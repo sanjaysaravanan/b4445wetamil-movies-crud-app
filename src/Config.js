@@ -1,0 +1,1 @@
+export const moviesUrl = 'https://64b3d5560efb99d862686c9a.mockapi.io';

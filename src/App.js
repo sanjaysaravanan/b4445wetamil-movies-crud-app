@@ -6,6 +6,7 @@ import Add from './Components/Add';
 import Edit from './Components/Edit';
 import Home from './Components/Home';
 import CityMovies from './Components/CityMovies';
+import Movie from './Components/Movie';
 
 function App() {
   return (
@@ -22,10 +23,10 @@ function App() {
             <Route index element={<Home />} />
             <Route path="add" element={<Add />} />
             <Route path="edit" element={<Edit />} />
+            <Route path=":movieId" element={<Movie />} />
             <Route path=":cityName" element={<CityMovies />} />
           </Route>
           <Route path="/404" element={<h3>Page not found, please check url</h3>} />
-          {/* Last path should be default path */}
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>
       </BrowserRouter>
