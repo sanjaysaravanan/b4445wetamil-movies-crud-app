@@ -7,8 +7,22 @@ import Edit from './Components/Edit';
 import Home from './Components/Home';
 import CityMovies from './Components/CityMovies';
 import Movie from './Components/Movie';
+import { useEffect } from 'react';
 
 function App() {
+
+  useEffect(() => {
+    window.addEventListener('keydown', (e) => {
+      console.log(e.key)
+      if (e.key === 'F5') {
+        e.preventDefault();
+        alert('Key pressed', e.key);
+      } else {
+        // alert('Key pressed', e);
+      }
+    })
+  }, [])
+
   return (
     <div className="App">
       <BrowserRouter>

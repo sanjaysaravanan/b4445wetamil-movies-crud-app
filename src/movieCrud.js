@@ -30,6 +30,19 @@ export const getMovie = async (movieId) => {
   return movie;
 }
 
+export const updateMovie = async (movieId, movieData) => {
+  const response = await fetch(
+    `${moviesUrl}/movies/${movieId}`,
+    {
+      method: 'PUT',
+      body: JSON.stringify(movieData),
+      headers: { 'Content-Type': 'application/json' }
+    }
+  );
+  const movie = await response.json();
+  return movie;
+}
+
 export const deleteMovie = async (movieId) => {
   const response = await fetch(
     `${moviesUrl}/movies/${movieId}`,
