@@ -6,6 +6,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import { getMovie } from '../movieCrud';
+import { axiosGetMovie } from '../axiosMovieCrud';
+
 
 
 const Movie = () => {
@@ -45,6 +47,7 @@ const Movie = () => {
       </iframe>
       <h2>{movieData.title}</h2>
       <h3>{movieData.category}</h3>
+      <button onClick={() => axiosGetMovie(movieId)} >Get Details</button>
     </div>
   )
 }

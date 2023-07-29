@@ -8,20 +8,13 @@ import Home from './Components/Home';
 import CityMovies from './Components/CityMovies';
 import Movie from './Components/Movie';
 import { useEffect } from 'react';
+import { getCountries } from './axios-config';
 
 function App() {
 
   useEffect(() => {
-    window.addEventListener('keydown', (e) => {
-      console.log(e.key)
-      if (e.key === 'F5') {
-        e.preventDefault();
-        alert('Key pressed', e.key);
-      } else {
-        // alert('Key pressed', e);
-      }
-    })
-  }, [])
+    getCountries();
+  }, []);
 
   return (
     <div className="App">
