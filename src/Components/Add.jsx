@@ -2,10 +2,11 @@ import React from "react";
 import { createMovie } from "../movieCrud";
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import styles from './form.module.css';
 
 const movieSchema = yup.object().shape({
   title: yup.string()
-    .min(3, 'Minimum 3 characters reuired')
+    .min(3, 'Minimum 3 characters required')
     .required('Title is required'),
   category: yup.string()
     .required('Category is required'),
@@ -15,6 +16,9 @@ const movieSchema = yup.object().shape({
   trailer: yup.string()
     .min(3, 'Minimum 3 characters required')
     .required('Trailer is required'),
+  password: yup.string().trim().matches(
+    "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$",
+    'Minimum eight characters, at least one letter and one number')
 });
 
 const Add = () => {
@@ -24,6 +28,7 @@ const Add = () => {
       category: '',
       image: '',
       trailer: '',
+      password: ''
     },
     onSubmit: function (values, formHelpers) {
       alert('Submitting the form')
@@ -40,13 +45,25 @@ const Add = () => {
       {/* {console.log('Touch State', movieForm.touched.title)} */}
       <div style={{ padding: 4 }}>
         <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={movieForm.values.title}
-          onChange={movieForm.handleChange}
-        />
+        <div style={{ position: 'relative', display: 'inline-block' }} >
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={movieForm.values.title}
+            onChange={movieForm.handleChange}
+            className={movieForm.errors.title ? styles.errorInput : ''}
+          />
+          {movieForm.errors.title && <i
+            className="fa-solid fa-triangle-exclamation"
+            style={{
+              color: "#ff0000",
+              position: 'absolute',
+              top: '2px',
+              right: '5px'
+            }}></i>}
+        </div>
+
         <br />
         {movieForm.touched.title && movieForm.errors.title
           && <div style={{ color: 'red' }}>{movieForm.errors.title}</div>}
@@ -94,6 +111,19 @@ const Add = () => {
         <br />
         {movieForm.touched.trailer && movieForm.errors.trailer
           && <div style={{ color: 'red' }}>{movieForm.errors.trailer}</div>}
+      </div>
+      <div style={{ padding: 4 }}>
+        <label htmlFor="trailer">Password:</label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          value={movieForm.values.password}
+          onChange={movieForm.handleChange}
+        />
+        <br />
+        {movieForm.touched.password && movieForm.errors.password
+          && <div style={{ color: 'red' }}>{movieForm.errors.password}</div>}
       </div>
       <button type="submit">Submit</button>
     </form>

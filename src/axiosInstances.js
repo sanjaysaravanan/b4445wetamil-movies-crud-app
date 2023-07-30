@@ -10,9 +10,8 @@ const movieInstance = axios.create({
 
 
 movieInstance.interceptors.request.use(function (config) {
-  alert('Alert before making API request to do an API call')
-  console.log(config);
-  return config;
+
+  return { ...config };
 }, function (err) {
   console.log(err);
 });

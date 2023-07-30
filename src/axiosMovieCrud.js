@@ -16,9 +16,9 @@ export const axiosCreateMovie = async (movieData) => {
 
 export const axiosGetMovies = async () => {
 
-  const { data } = await movieInstance.get('/movies');
+  const response = await movieInstance.get('/movies');
 
-  console.log(data);
+  console.log(response);
 
 }
 
